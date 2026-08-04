@@ -1,0 +1,576 @@
+:root {
+  /* Futuristic Dark Theme Tokens */
+  --bg-primary: #060913;
+  --bg-secondary: #0b1120;
+  --bg-card: rgba(15, 23, 42, 0.85);
+  --bg-card-hover: rgba(30, 41, 59, 0.95);
+  --glass-bg: rgba(11, 17, 32, 0.88);
+  --glass-border: rgba(56, 189, 248, 0.35);
+  --glass-border-glow: rgba(6, 182, 212, 0.7);
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --glow-blue: 0 0 25px rgba(59, 130, 246, 0.35);
+  --glow-cyan: 0 0 30px rgba(6, 182, 212, 0.45);
+  --glow-rose: 0 0 30px rgba(244, 63, 94, 0.45);
+  --shadow-main: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --font-hud: 'Orbitron', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+  --button-bg-secondary: rgba(30, 41, 59, 0.85);
+  --button-text-secondary: #ffffff;
+}
+
+[data-theme='light'] {
+  --bg-primary: #f0f4f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(203, 213, 225, 0.9);
+  --glass-border-glow: rgba(14, 116, 144, 0.5);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --shadow-main: 0 8px 32px rgba(15, 23, 42, 0.08);
+  --button-bg-secondary: #e2e8f0;
+  --button-text-secondary: #0f172a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+/* Light mode: softer subtle background gradients */
+[data-theme='light'] body {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(14, 116, 144, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+}
+
+/* Glassmorphism Crisp Panel Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-main);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-glow);
+}
+
+/* ====================================================================
+   COMPREHENSIVE LIGHT MODE OVERRIDES
+   ==================================================================== */
+
+/* Glass panel in light mode */
+[data-theme='light'] .glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-color: #e2e8f0;
+}
+
+[data-theme='light'] .glass-panel:hover {
+  border-color: #0891b2;
+  box-shadow: 0 8px 32px rgba(14, 116, 144, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ---- Text color overrides ---- */
+[data-theme='light'] .text-slate-100,
+[data-theme='light'] .text-slate-200 {
+  color: #0f172a !important;
+}
+
+[data-theme='light'] .text-slate-300 {
+  color: #1e293b !important;
+}
+
+[data-theme='light'] .text-slate-400 {
+  color: #475569 !important;
+}
+
+[data-theme='light'] .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* ---- Cyan accent tones for light (slightly deeper for contrast) ---- */
+[data-theme='light'] .text-cyan-300 {
+  color: #0891b2 !important;
+}
+
+[data-theme='light'] .text-cyan-400 {
+  color: #0e7490 !important;
+}
+
+[data-theme='light'] .cyan-gradient-text {
+  background: linear-gradient(135deg, #0e7490, #0891b2, #1d4ed8) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ---- Amber / Purple / Emerald accent tones ---- */
+[data-theme='light'] .text-amber-300 {
+  color: #d97706 !important;
+}
+
+[data-theme='light'] .text-amber-400 {
+  color: #b45309 !important;
+}
+
+[data-theme='light'] .text-purple-300 {
+  color: #7c3aed !important;
+}
+
+[data-theme='light'] .text-purple-400 {
+  color: #6d28d9 !important;
+}
+
+[data-theme='light'] .text-emerald-300 {
+  color: #059669 !important;
+}
+
+[data-theme='light'] .text-emerald-400 {
+  color: #047857 !important;
+}
+
+/* ---- Background overrides for all dark bg- classes ---- */
+[data-theme='light'] .bg-slate-900,
+[data-theme='light'] .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+
+[data-theme='light'] [class*="bg-slate-900\/"],
+[data-theme='light'] [class*="bg-slate-950\/"] {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+}
+
+[data-theme='light'] .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+[data-theme='light'] [class*="bg-slate-800\/"] {
+  background-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+/* ---- Border overrides ---- */
+[data-theme='light'] .border-slate-700,
+[data-theme='light'] .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme='light'] [class*="border-slate-700\/"],
+[data-theme='light'] [class*="border-slate-800\/"] {
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+[data-theme='light'] .border-cyan-500\/20,
+[data-theme='light'] .border-cyan-500\/30 {
+  border-color: rgba(14, 116, 144, 0.25) !important;
+}
+
+[data-theme='light'] .border-cyan-500\/40,
+[data-theme='light'] .border-cyan-500\/50,
+[data-theme='light'] .border-cyan-500\/60 {
+  border-color: rgba(14, 116, 144, 0.35) !important;
+}
+
+[data-theme='light'] .border-blue-500\/20,
+[data-theme='light'] .border-blue-500\/30 {
+  border-color: rgba(37, 99, 235, 0.2) !important;
+}
+
+/* ---- Alpha background overrides (colored tinted panels) ---- */
+[data-theme='light'] .bg-cyan-500\/10,
+[data-theme='light'] .bg-cyan-500\/20 {
+  background-color: rgba(14, 116, 144, 0.08) !important;
+}
+
+[data-theme='light'] .bg-amber-500\/10,
+[data-theme='light'] .bg-amber-500\/20 {
+  background-color: rgba(217, 119, 6, 0.08) !important;
+}
+
+[data-theme='light'] .bg-emerald-500\/10,
+[data-theme='light'] .bg-emerald-500\/20 {
+  background-color: rgba(5, 150, 105, 0.08) !important;
+}
+
+[data-theme='light'] .bg-purple-500\/10,
+[data-theme='light'] .bg-purple-500\/20 {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+}
+
+[data-theme='light'] .bg-rose-500\/10,
+[data-theme='light'] .bg-rose-500\/15,
+[data-theme='light'] .bg-rose-500\/20 {
+  background-color: rgba(225, 29, 72, 0.08) !important;
+}
+
+[data-theme='light'] .bg-blue-500\/20 {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+}
+
+[data-theme='light'] .bg-blue-600\/30 {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+/* ---- Buttons ---- */
+[data-theme='light'] button {
+  color: #1e293b;
+}
+
+/* Primary gradient buttons should keep their style */
+[data-theme='light'] .bg-gradient-to-r {
+  color: #0f172a;
+}
+
+/* ---- Inputs, selects, textareas ---- */
+[data-theme='light'] input,
+[data-theme='light'] select,
+[data-theme='light'] textarea {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme='light'] input::placeholder,
+[data-theme='light'] textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+[data-theme='light'] input:focus,
+[data-theme='light'] select:focus,
+[data-theme='light'] textarea:focus {
+  border-color: #0891b2 !important;
+  box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.1) !important;
+}
+
+/* ---- Tables ---- */
+[data-theme='light'] table thead tr {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme='light'] table tbody tr:hover {
+  background-color: rgba(241, 245, 249, 0.7) !important;
+}
+
+[data-theme='light'] .divide-slate-800\/60 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme='light'] table td,
+[data-theme='light'] table th {
+  color: #334155;
+}
+
+[data-theme='light'] table td.font-bold,
+[data-theme='light'] table td .font-bold {
+  color: #0f172a;
+}
+
+/* ---- Modals ---- */
+[data-theme='light'] .bg-slate-950\/70 {
+  background-color: rgba(15, 23, 42, 0.35) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* ---- Sidebar ---- */
+[data-theme='light'] .bg-gradient-to-r.from-blue-600\/90.to-cyan-600\/90 {
+  box-shadow: 0 4px 12px rgba(14, 116, 144, 0.2);
+}
+
+/* ---- Notification dropdown ---- */
+[data-theme='light'] .bg-slate-900\/80 {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- Progress bars & badges ---- */
+[data-theme='light'] .bg-slate-950.h-2,
+[data-theme='light'] .bg-slate-800.h-1\.5 {
+  background-color: #e2e8f0 !important;
+}
+
+/* ---- Shadow overrides ---- */
+[data-theme='light'] .shadow-cyan-500\/10,
+[data-theme='light'] .shadow-cyan-500\/20,
+[data-theme='light'] .shadow-cyan-500\/25 {
+  --tw-shadow-color: rgba(14, 116, 144, 0.1);
+}
+
+[data-theme='light'] .shadow-blue-500\/25 {
+  --tw-shadow-color: rgba(37, 99, 235, 0.1);
+}
+
+/* ---- Glow effects (tone down in light mode) ---- */
+[data-theme='light'] .pulse-active {
+  animation: pulse-glow-light 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow-light {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(14, 116, 144, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(14, 116, 144, 0.3);
+  }
+}
+
+/* ---- Voice control mic area ---- */
+[data-theme='light'] .border-cyan-500\/30 {
+  border-color: rgba(14, 116, 144, 0.2) !important;
+}
+
+/* ---- Chat bubbles ---- */
+[data-theme='light'] .bg-slate-950\/90 {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- Camera feed overlay ---- */
+[data-theme='light'] .scanline-overlay::after {
+  opacity: 0.3;
+}
+
+/* ---- Toggle switch in light mode ---- */
+[data-theme='light'] .slider {
+  background-color: #cbd5e1;
+  border-color: #94a3b8;
+}
+
+[data-theme='light'] input:checked + .slider {
+  background-color: #0891b2;
+  box-shadow: 0 0 10px rgba(14, 116, 144, 0.35);
+}
+
+[data-theme='light'] input:checked + .slider:before {
+  background-color: #ffffff;
+}
+
+/* ---- Range slider accent ---- */
+[data-theme='light'] input[type="range"] {
+  accent-color: #0891b2 !important;
+}
+
+[data-theme='light'] input[type="range"]::-webkit-slider-runnable-track {
+  background: #e2e8f0 !important;
+}
+
+/* ---- Scrollbar in light mode ---- */
+[data-theme='light'] ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+[data-theme='light'] ::-webkit-scrollbar-thumb {
+  background: rgba(14, 116, 144, 0.3);
+}
+
+/* ---- Navbar weather/clock widget ---- */
+[data-theme='light'] .bg-slate-900\/60 {
+  background-color: #f1f5f9 !important;
+}
+
+/* ---- Animate bounce on weather icon — no change needed ---- */
+
+/* ---- Logo image border ---- */
+[data-theme='light'] .border-cyan-400\/50 {
+  border-color: rgba(14, 116, 144, 0.3) !important;
+}
+
+/* ---- Security alarm button active state ---- */
+[data-theme='light'] .bg-rose-600 {
+  background-color: #e11d48 !important;
+  color: #ffffff !important;
+}
+
+/* ---- Active device card glow (softer in light) ---- */
+[data-theme='light'] .shadow-lg.shadow-cyan-500\/10 {
+  box-shadow: 0 4px 16px rgba(14, 116, 144, 0.08) !important;
+}
+
+/* ---- User avatar in navbar ---- */
+[data-theme='light'] .bg-gradient-to-tr.from-cyan-400.to-blue-600 {
+  box-shadow: 0 2px 8px rgba(14, 116, 144, 0.2);
+}
+
+[data-theme='light'] .bg-slate-950.rounded-\[10px\] {
+  background-color: #f1f5f9 !important;
+}
+
+/* ====================================================================
+   END LIGHT MODE OVERRIDES
+   ==================================================================== */
+
+/* Futuristic HUD Typography */
+.hud-title {
+  font-family: var(--font-hud);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cyan-gradient-text {
+  background: linear-gradient(135deg, #0284c7, #06b6d4, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scanline Effect for Cameras */
+.scanline-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+  z-index: 2;
+  background-size: 100% 4px, 8px 100%;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(6, 182, 212, 0.85);
+  }
+}
+
+.pulse-active {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.4);
+  border-radius: 4px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(148, 163, 184, 0.5);
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 34px;
+  border: 1px solid var(--glass-border);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider {
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+  background-color: #0f172a;
+}
+
+/* ====================================================================
+   MOBILE & TABLET RESPONSIVE SAFEGUARDS
+   ==================================================================== */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Custom Horizontal Touch Scrollbar styling */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar utility for clean mobile button bars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Touch optimization for mobile buttons & switches */
+@media (max-width: 640px) {
+  .hud-title {
+    letter-spacing: 0.04em;
+  }
+
+  button, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+
